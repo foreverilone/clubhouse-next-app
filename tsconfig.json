@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "components/steps/WelcomeStep/index.js", "components/steps/EnterNameStep/index.js", "components/steps/GitHubStep/index.js", "components/steps/ChooseAvatarStep/index.js", "components/Avatar/index.js"  ],
   "exclude": [
     "node_modules"
   ]

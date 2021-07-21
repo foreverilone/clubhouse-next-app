@@ -10,10 +10,15 @@ import styles from './EnterPhoneStep.module.scss';
 // import { Axios } from '../../../core/axios';
 
 
-export const EnterPhoneStep = () => {
-  const [inputValue, setInputValue] = React.useState({});
+type InputValueState = {
+  formattedValue: string;
+  value: string;
+}
 
-  const nextDisabled = !values.formattedValue || values.formattedValue.includes('_');
+export const EnterPhoneStep = () => {
+  const [values, setValues] = React.useState<InputValueState>({} as InputValueState);
+console.log(values);
+  const nextDisabled = !values.formattedValue || values.formattedValue.includes('_'); // пока все не заполено, то кнопка отправки не работает
 
   return (
     <div className={styles.block}>
@@ -30,19 +35,13 @@ export const EnterPhoneStep = () => {
             format="+# (###) ###-##-##"
             mask="_"
             placeholder="+7 (999) 333-22-11"
-            value={inputValue.value}
-            onValueChange={(values) => setInputValue(values)}
+            value={values.value}
+            onValueChange={({ formattedValue, value }) => setValues({ formattedValue, value })}
           />
         </div>
-        <Button disabled={isLoading || nextDisabled} onClick={onSubmit}>
-          {isLoading ? (
-            'Sending...'
-          ) : (
-            <>
-              Next
-              <img className="d-ib ml-10" src="/static/arrow.svg" />
-            </>
-          )}
+        <Button disabled={nextDisabled}>
+          Next
+          <img className="d-ib ml-10" src="/static/arrow.svg" />
         </Button>
         <p className={clsx(styles.policyText, 'mt-30')}>
           By entering your number, you’re agreeing to our Terms of Service and Privacy Policy.

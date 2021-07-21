@@ -4,6 +4,8 @@ import { Button } from '../../Button';
 import styles from './WelcomeStep.module.scss';
 
 
+
+
 export const WelcomeStep = () => {
   // const { onNextStep } = React.useContext(MainContext);
 
