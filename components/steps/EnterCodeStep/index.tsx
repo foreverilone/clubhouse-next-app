@@ -30,52 +30,57 @@ export const EnterCodeStep = () => {
     } 
   };
 
-  console.log(codes);
+  const onSubmit = () => {
+    setIsLoading(true)
+  }
 
+  
   return (
     <div className={styles.block}>
-      <StepInfo icon="/static/numbers.png" title="Enter your activate code" />
       {!isLoading ? (
-        <WhiteBlock className={clsx('m-auto mt-30', styles.whiteBlock)}>
-          <div className={styles.codeInput}>
-              <input
-                type="tel"
-                placeholder="X"
-                maxLength={1}
-                id="1"
-                onChange={handleChangeInput}
-                value={codes[0]}
-              />
-              <input
-                type="tel"
-                placeholder="X"
-                maxLength={1}
-                id="2"
-                onChange={handleChangeInput}
-                value={codes[1]}
-              />
-              <input
-                type="tel"
-                placeholder="X"
-                maxLength={1}
-                id="3"
-                onChange={handleChangeInput}
-                value={codes[2]}
-              />
-              <input
-                type="tel"
-                placeholder="X"
-                maxLength={1}
-                id="4"
-                onChange={handleChangeInput}
-                value={codes[3]}
-              />
-          </div>
-          <Button disabled={nextDisabled}>
-            Next
-            <img className="d-ib ml-30" src="/static/arrow.svg" />
-          </Button>
-        </WhiteBlock>
+        <>
+          <StepInfo icon="/static/numbers.png" title="Enter your activate code" />
+          <WhiteBlock className={clsx('m-auto mt-30', styles.whiteBlock)}>
+            <div className={styles.codeInput}>
+                <input
+                  type="tel"
+                  placeholder="X"
+                  maxLength={1}
+                  id="1"
+                  onChange={handleChangeInput}
+                  value={codes[0]}
+                />
+                <input
+                  type="tel"
+                  placeholder="X"
+                  maxLength={1}
+                  id="2"
+                  onChange={handleChangeInput}
+                  value={codes[1]}
+                />
+                <input
+                  type="tel"
+                  placeholder="X"
+                  maxLength={1}
+                  id="3"
+                  onChange={handleChangeInput}
+                  value={codes[2]}
+                />
+                <input
+                  type="tel"
+                  placeholder="X"
+                  maxLength={1}
+                  id="4"
+                  onChange={handleChangeInput}
+                  value={codes[3]}
+                />
+            </div>
+            <Button onClick={onSubmit} disabled={nextDisabled}>
+              Next
+              <img className="d-ib ml-10" src="/static/arrow.svg" />
+            </Button>
+          </WhiteBlock>
+        </>
       ) : (
           <div className="text-center">
             <div className="loader"></div>
