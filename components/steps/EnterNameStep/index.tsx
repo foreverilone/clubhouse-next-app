@@ -4,11 +4,25 @@ import { Button } from '../../Button';
 import { StepInfo } from '../../StepInfo';
 
 import styles from './EnterNameStep.module.scss';
-// import React from 'react';
-// import { MainContext } from '../../../pages';
+import React from 'react';
+import { MainContext } from '../../../pages';
 // import { Avatar } from '../../Avatar';
 
 export const EnterNameStep = () => {
+  const [inputValue, setInputValue] = React.useState<string>('');
+  const { onNextStep } = React.useContext(MainContext);
+
+  const nextDisabled = !inputValue;
+
+  const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
+  const onClickNextStep = () => {
+    // setFieldValue('fullname', inputValue);
+    onNextStep();
+  };
+
   return (
     <div className={styles.block}>
       <StepInfo
@@ -18,12 +32,14 @@ export const EnterNameStep = () => {
       />
       <WhiteBlock className={clsx('m-auto', styles.whiteBlock)}>
         <div className="mt-30 mb-30">
-          <input
+          <input 
+            onChange={ handleChangeInput }
+            value={ inputValue }
             className="field"
             placeholder="Enter fullname"
           />
         </div>
-        <Button>
+        <Button onClick={ onClickNextStep } disabled={ nextDisabled }>
           Next
           <img className="d-ib ml-10" src="/static/arrow.svg" />
         </Button>
@@ -33,19 +49,9 @@ export const EnterNameStep = () => {
 };
 
 
-// export const EnterNameStep = () => {
-//   const { onNextStep, userData, setFieldValue } = React.useContext(MainContext);
-//   const [inputValue, setInputValue] = React.useState<string>(userData.fullname);
-//   const nextDisabled = !inputValue;
 
-//   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-//     setInputValue(event.target.value);
-//   };
 
-//   const onClickNextStep = () => {
-//     setFieldValue('fullname', inputValue);
-//     onNextStep();
-//   };
+
 
 //   return (
 //     <div className={styles.block}>

@@ -6,11 +6,12 @@ import { StepInfo } from '../../StepInfo';
 import { Avatar } from '../../Avatar';
 
 import styles from './ChooseAvatarStep.module.scss';
-// import { MainContext } from '../../../pages';
+import { MainContext } from '../../../pages';
 // import { Axios } from '../../../core/axios';
 
 
 export const ChooseAvatarStep: React.FC = () => {
+  const { onNextStep } = React.useContext(MainContext);
   const [avatarUrl, setAvatarUrl] = React.useState<string>('https://www.meme-arsenal.com/memes/1ed4f226749a18c5bb6518be2cdeefb7.jpg');
   const inputFileRef = React.useRef<HTMLInputElement>(null);
 
@@ -50,7 +51,7 @@ export const ChooseAvatarStep: React.FC = () => {
           </label>
         </div>
         <input id="image" ref={inputFileRef} type="file" hidden />
-        <Button>
+        <Button onClick={ onNextStep }>
           Next
           <img className="d-ib ml-10" src="/static/arrow.svg" />
         </Button>

@@ -6,7 +6,7 @@ import { Button } from '../../Button';
 import { StepInfo } from '../../StepInfo';
 
 import styles from './EnterPhoneStep.module.scss';
-// import { MainContext } from '../../../pages';
+import { MainContext } from '../../../pages';
 // import { Axios } from '../../../core/axios';
 
 
@@ -16,8 +16,9 @@ type InputValueState = {
 }
 
 export const EnterPhoneStep = () => {
+  const { onNextStep } = React.useContext(MainContext);
   const [values, setValues] = React.useState<InputValueState>({} as InputValueState);
-console.log(values);
+
   const nextDisabled = !values.formattedValue || values.formattedValue.includes('_'); // пока все не заполено, то кнопка отправки не работает
 
   return (
@@ -39,7 +40,7 @@ console.log(values);
             onValueChange={({ formattedValue, value }) => setValues({ formattedValue, value })}
           />
         </div>
-        <Button disabled={nextDisabled}>
+        <Button onClick={ onNextStep } disabled={nextDisabled}>
           Next
           <img className="d-ib ml-10" src="/static/arrow.svg" />
         </Button>
