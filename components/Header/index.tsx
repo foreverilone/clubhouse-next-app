@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable @next/next/link-passhref */
 import clsx from 'clsx';
 import Link from 'next/link';
 import React from 'react';

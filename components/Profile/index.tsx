@@ -1,8 +1,10 @@
+/* eslint-disable @next/next/link-passhref */
+/* eslint-disable @next/next/no-img-element */
 import clsx from 'clsx';
 import Link from 'next/link';
 import React from 'react';
 import { Avatar } from '../Avatar';
-// import { BackButton } from '../BackButton';
+import { BackButton } from '../BackButton';
 import { Button } from '../Button';
 
 import styles from './Profile.module.scss';
@@ -18,17 +20,13 @@ export const Profile: React.FC<ProfileProps> = ({ fullname, username, avatarUrl,
   return (
     <>
       <Link href="/rooms">
-        <a className="d-flex mb-30">
-        <img src="/static/back-arrow.svg" alt="Back" className=" mr-10"/>
-        <h3>Back</h3>
-          {/* <BackButton title="Back" href="/rooms" /> */}
-        </a>
+        <BackButton title="Back" href="/rooms" />
       </Link>
 
       <div className="d-flex align-items-center">
         <div className="d-flex align-items-center">
           <Avatar 
-            avatarUrl="https://www.meme-arsenal.com/memes/1ed4f226749a18c5bb6518be2cdeefb7.jpg"
+            src={avatarUrl}
             width="100px" 
             height="100px" 
             />
@@ -45,3 +43,5 @@ export const Profile: React.FC<ProfileProps> = ({ fullname, username, avatarUrl,
     </>
   );
 };
+
+// "https://www.meme-arsenal.com/memes/1ed4f226749a18c5bb6518be2cdeefb7.jpg"
